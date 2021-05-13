@@ -51,7 +51,6 @@ pipeline {
                 echo 'creating package'
                 pwd
                 ls -ll
-                cd practice
                 mvn package
                 '''
             }
