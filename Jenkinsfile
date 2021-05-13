@@ -6,8 +6,8 @@ pipeline {
             steps {
                 sh '''
                 echo 'cloning code from git'
-                rm -rf practice
-                git clone 'https://github.com/Sonushaik1143/practice.git'
+                rm -rf mavenlocal
+                git clone 'https://github.com/madhavibonugowlla/mavenlocal.git'
                 '''
             }
         }
@@ -17,7 +17,7 @@ pipeline {
                 echo 'here compiling the dev code'
                 pwd
                 ls -ll
-                cd practice
+                cd mavenlocal
                 mvn clean
                 mvn compile
                 '''
@@ -29,7 +29,7 @@ pipeline {
                 echo 'validating test cases'
                 pwd
                 ls -ll
-                cd practice
+                cd mavenlocal
                 mvn test
                 '''
             }
@@ -40,7 +40,7 @@ pipeline {
                 echo 'validating sonar code coverage'
                 pwd
                 ls -ll
-                cd practice
+                cd mavenlocal
                 mvn sonar:sonar
                 '''
             }
@@ -60,8 +60,6 @@ pipeline {
             steps {
             sh '''
             echo 'uploading packages to jfrog repo'
-            curl -u admin:admin@123 -T /c/Users/Prabhu/.jenkins/workspace/pipeline_job/practice/target/com.google-google1.0.jar "http://localhost:8081/artifactory/devops-test/."
-
             '''
             }
         }
